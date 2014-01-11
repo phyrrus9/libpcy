@@ -1,0 +1,33 @@
+libPCY (simple c/c++ encryption library).
+
+PCY is based off of the following:
+
+byte #1, separated into two nibbles, first is the one time pad, the second the bit pattern
+byte #2, bits0-6 are the frequency of the swap, bit 7 is the byte swap flag
+byte #3, frequency of the one time pad
+byte #4, frequency of the bit pattern
+byte #5, bits 0-2: the encryption order, bits3-7: the frequency of padding bytes (random)
+
+Steps:
+1: apply one time pad to all bytes (addition)
+2: apply the bit pattern
+3: apply padding bytes
+4: perform byte swap
+order (000): 1234
+order (001): 4321
+order (010): 1432
+order (011): 2143
+order (100): 3142
+order (101): 2431
+order (110): 4231
+order (111): 4123
+
+Compiling:
+for OSX, this is really simple, it compiles the dynamic libs as they would be needed.
+for linux, you just need to change the extension from .dylib to .so (afaik)
+for windows, good luck..It will compile, but you're better off just adding the src to your project
+
+Usage:
+just include <pcy.h> and -lpcy
+
+:)
